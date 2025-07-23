@@ -2,7 +2,7 @@
 # exit on error
 set -o errexit
 
-# Navigate to backend directory
+# Navigate to the backend directory
 cd backend
 
 # Install dependencies
@@ -13,9 +13,6 @@ python manage.py collectstatic --no-input
 
 # Run migrations
 python manage.py migrate
-
-# Populate initial data
-python manage.py populate_data
 
 # Create superuser if needed (optional)
 # python manage.py shell -c "
