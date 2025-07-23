@@ -165,6 +165,8 @@ REST_FRAMEWORK = {
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",  # React development server
     "http://127.0.0.1:3000",
+    "http://localhost:3001",  # React development server (alternative port)
+    "http://127.0.0.1:3001",
     "https://roadmap-6cw1.vercel.app",  # Your actual Vercel URL (without /roadmap path)
 ]
 
