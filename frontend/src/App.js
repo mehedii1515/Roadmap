@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import Layout from './components/Layout';
+import LandingPage from './components/LandingPage';
 import RoadmapList from './components/RoadmapList';
 import RoadmapDetail from './components/RoadmapDetail';
 import Login from './components/Login';
@@ -32,6 +33,17 @@ const PublicRoute = ({ children }) => {
   return children;
 };
 
+// Home component that shows landing page for non-authenticated users and roadmap for authenticated users
+const Home = () => {
+  const { isAuthenticated } = useAuth();
+  
+  if (isAuthenticated) {
+    return <RoadmapList />;
+  }
+  
+  return <LandingPage />;
+};
+
 // Main content component that handles routing
 const AppRoutes = React.memo(() => {
   const location = useLocation();
@@ -39,13 +51,17 @@ const AppRoutes = React.memo(() => {
   // Determine if we need layout for current route
   const needsLayout = useMemo(() => {
     const noLayoutRoutes = ['/login', '/register'];
+    // Don't use layout for landing page (when not authenticated)
     return !noLayoutRoutes.includes(location.pathname);
   }, [location.pathname]);
 
   const routeContent = useMemo(() => (
     <Routes>
-      {/* Public routes with layout */}
-      <Route path="/" element={<RoadmapList />} />
+      {/* Home route - shows landing page or roadmap based on authentication */}
+      <Route path="/" element={<Home />} />
+      
+      {/* Public routes with potential layout */}
+      <Route path="/roadmap" element={<RoadmapList />} />
       <Route path="/roadmap/:id" element={<RoadmapDetail />} />
       
       {/* Authentication routes without layout */}
@@ -66,15 +82,20 @@ const AppRoutes = React.memo(() => {
     </Routes>
   ), []);
 
-  if (needsLayout) {
-    return (
-      <Layout>
-        {routeContent}
-      </Layout>
-    );
+  // Check if current route is landing page and user is not authenticated
+  const { isAuthenticated } = useAuth();
+  const isLandingPage = location.pathname === '/' && !isAuthenticated;
+
+  // Don't use layout for landing page
+  if (!needsLayout || isLandingPage) {
+    return routeContent;
   }
 
-  return routeContent;
+  return (
+    <Layout>
+      {routeContent}
+    </Layout>
+  );
 });
 
 AppRoutes.displayName = 'AppRoutes';
