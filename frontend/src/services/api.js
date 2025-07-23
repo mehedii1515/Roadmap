@@ -6,9 +6,15 @@ const isProduction = process.env.NODE_ENV === 'production';
 const productionApiUrl = 'https://roadmap-backend-egd9.onrender.com/api';
 const developmentApiUrl = 'http://localhost:8000/api';
 
+// Handle environment variable - ensure it has /api suffix
+let envApiUrl = process.env.REACT_APP_API_URL;
+if (envApiUrl && !envApiUrl.endsWith('/api')) {
+  envApiUrl = envApiUrl.endsWith('/') ? envApiUrl + 'api' : envApiUrl + '/api';
+}
+
 const API_BASE_URL = isProduction 
-  ? (process.env.REACT_APP_API_URL || productionApiUrl)
-  : (process.env.REACT_APP_API_URL || developmentApiUrl);
+  ? (envApiUrl || productionApiUrl)
+  : (envApiUrl || developmentApiUrl);
 
 // Debug: Log the API URL being used (remove in production)
 console.log('API_BASE_URL:', API_BASE_URL);
