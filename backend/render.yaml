@@ -1,0 +1,13 @@
+# Render.com deployment configuration
+# This file is used by Render to configure your backend deployment
+
+# Build Command (in Render dashboard, use this):
+# ./build.sh
+
+# Start Command (in Render dashboard, use this):
+# gunicorn roadmap_backend.wsgi:application
+
+# Environment Variables to set in Render:
+# SECRET_KEY=your-secret-key-here
+# DEBUG=False
+# FRONTEND_URL=https://your-app-name.vercel.app
