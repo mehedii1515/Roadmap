@@ -229,7 +229,7 @@ const Comment = ({ comment, roadmapId, onCommentUpdate, level = 0 }) => {
 
 const RoadmapDetail = () => {
   const { id } = useParams();
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated } = useAuth();
   const [roadmapItem, setRoadmapItem] = useState(null);
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);

@@ -34,9 +34,12 @@ if not SECRET_KEY:
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    'your-app-name.onrender.com',  # Replace with your actual Render app name
+    'your-backend-name.onrender.com',  # Replace with your actual Render app name
     '*.onrender.com',  # Allow any Render subdomain
 ]
+
+# After you get your Vercel URL, add it here:
+# 'your-frontend-name.vercel.app',
 
 
 # Application definition
@@ -163,7 +166,7 @@ REST_FRAMEWORK = {
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",  # React development server
     "http://127.0.0.1:3000",
-    "https://your-app-name.vercel.app",  # Replace with your actual Vercel domain
+    # "https://your-frontend-name.vercel.app",  # Add your actual Vercel URL here after deployment
 ]
 
 # Add production frontend URLs when deployed
@@ -190,7 +193,7 @@ CORS_ALLOW_HEADERS = [
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
-    "https://your-app-name.vercel.app",  # Replace with your actual Vercel domain
+    # "https://your-frontend-name.vercel.app",  # Add your actual Vercel URL here after deployment
 ]
 
 if FRONTEND_URL:
