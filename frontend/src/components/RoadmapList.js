@@ -12,11 +12,11 @@ const FilterSection = React.memo(({
   searchInputRef 
 }) => {
   return (
-    <div className="bg-white p-6 rounded-lg shadow">
-      <h2 className="text-lg font-semibold mb-4">Filter & Sort</h2>
+    <div className="bg-white p-6 rounded-lg shadow-lg border border-primary-200">
+      <h2 className="text-lg font-semibold mb-4 text-primary-900">Filter & Sort</h2>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-primary-700 mb-1">
             Search
           </label>
           <div className="relative">
@@ -24,7 +24,7 @@ const FilterSection = React.memo(({
               ref={searchInputRef}
               type="text"
               placeholder="Search roadmap items..."
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+              className="w-full px-3 py-2 border border-primary-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent-500"
               value={searchInput}
               onChange={(e) => onFilterChange('search', e.target.value)}
             />
@@ -32,11 +32,11 @@ const FilterSection = React.memo(({
         </div>
         
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-primary-700 mb-1">
             Status
           </label>
           <select
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+            className="w-full px-3 py-2 border border-primary-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent-500"
             value={filters.status}
             onChange={(e) => onFilterChange('status', e.target.value)}
           >
@@ -50,11 +50,11 @@ const FilterSection = React.memo(({
         </div>
         
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-primary-700 mb-1">
             Category
           </label>
           <select
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+            className="w-full px-3 py-2 border border-primary-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent-500"
             value={filters.category}
             onChange={(e) => onFilterChange('category', e.target.value)}
           >
@@ -68,11 +68,11 @@ const FilterSection = React.memo(({
         </div>
         
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-primary-700 mb-1">
             Sort By
           </label>
           <select
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+            className="w-full px-3 py-2 border border-primary-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent-500"
             value={filters.ordering}
             onChange={(e) => onFilterChange('ordering', e.target.value)}
           >
@@ -109,15 +109,15 @@ const RoadmapItem = React.memo(({
   formatCategory 
 }) => {
   return (
-    <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow border">
+    <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow border border-primary-200">
       <div className="flex items-start justify-between">
         <div className="flex-1">
           <div className="flex items-start gap-3 mb-3">
             <div className="flex-1">
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+              <h3 className="text-xl font-semibold text-primary-900 mb-2">
                 <Link 
                   to={`/roadmap/${item.id}`}
-                  className="hover:text-blue-600 transition-colors"
+                  className="hover:text-accent-600 transition-colors"
                 >
                   {item.title}
                 </Link>
@@ -133,11 +133,11 @@ const RoadmapItem = React.memo(({
             </div>
           </div>
           
-          <p className="text-gray-600 mb-4 line-clamp-3">
+          <p className="text-primary-700 mb-4 line-clamp-3">
             {item.description}
           </p>
           
-          <div className="flex items-center justify-between flex-wrap gap-2 text-sm text-gray-500">
+          <div className="flex items-center justify-between flex-wrap gap-2 text-sm text-primary-600">
             <div className="flex items-center gap-4">
               <span className="flex items-center gap-1 whitespace-nowrap">
                 <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -157,8 +157,8 @@ const RoadmapItem = React.memo(({
             onClick={() => onUpvote(item.id)}
             className={`p-3 rounded-full transition-all duration-200 ${
               item.user_upvoted 
-                ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-md' 
-                : 'bg-gray-100 text-gray-600 hover:bg-gray-200 hover:shadow-md'
+                ? 'bg-accent-600 text-white hover:bg-accent-700 shadow-md' 
+                : 'bg-primary-100 text-primary-600 hover:bg-primary-200 hover:shadow-md'
             } ${!isAuthenticated ? 'opacity-50 cursor-not-allowed' : 'hover:scale-105'}`}
             disabled={!isAuthenticated}
             title={!isAuthenticated ? 'Please log in to upvote' : 'Toggle upvote'}
@@ -167,7 +167,7 @@ const RoadmapItem = React.memo(({
               <path fillRule="evenodd" d="M3.293 9.707a1 1 0 010-1.414l6-6a1 1 0 011.414 0l6 6a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L4.707 9.707a1 1 0 01-1.414 0z" clipRule="evenodd" />
             </svg>
           </button>
-          <span className="text-sm font-semibold text-gray-900 mt-2">
+          <span className="text-sm font-semibold text-primary-900 mt-2">
             {item.upvote_count}
           </span>
         </div>
@@ -297,24 +297,24 @@ const RoadmapList = () => {
   // Memoized utility functions with no dependencies
   const getStatusColor = useCallback((status) => {
     const colors = {
-      'planning': 'bg-gray-100 text-gray-800',
-      'in_progress': 'bg-blue-100 text-blue-800',
-      'completed': 'bg-green-100 text-green-800',
-      'on_hold': 'bg-yellow-100 text-yellow-800',
-      'cancelled': 'bg-red-100 text-red-800'
+      'planning': 'bg-primary-100 text-primary-800',
+      'in_progress': 'bg-accent-100 text-accent-800',
+      'completed': 'bg-success-100 text-success-800',
+      'on_hold': 'bg-warning-100 text-warning-800',
+      'cancelled': 'bg-danger-100 text-danger-800'
     };
-    return colors[status] || 'bg-gray-100 text-gray-800';
+    return colors[status] || 'bg-primary-100 text-primary-800';
   }, []);
 
   const getCategoryColor = useCallback((category) => {
     const colors = {
-      'feature': 'bg-purple-100 text-purple-800',
-      'improvement': 'bg-blue-100 text-blue-800',
-      'bug_fix': 'bg-red-100 text-red-800',
-      'maintenance': 'bg-yellow-100 text-yellow-800',
-      'research': 'bg-green-100 text-green-800'
+      'feature': 'bg-accent-100 text-accent-800',
+      'improvement': 'bg-success-100 text-success-800',
+      'bug_fix': 'bg-danger-100 text-danger-800',
+      'maintenance': 'bg-warning-100 text-warning-800',
+      'research': 'bg-primary-100 text-primary-800'
     };
-    return colors[category] || 'bg-gray-100 text-gray-800';
+    return colors[category] || 'bg-primary-100 text-primary-800';
   }, []);
 
   const formatStatus = useCallback((status) => {
@@ -363,18 +363,18 @@ const RoadmapList = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-primary-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Welcome Header Section */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+          <h1 className="text-4xl font-bold text-primary-900 mb-4">
             Welcome to Our Development Roadmap
           </h1>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-2">
+          <p className="text-lg text-primary-700 max-w-3xl mx-auto mb-2">
             Explore our upcoming features, improvements, and initiatives. Share your feedback, 
             vote on features that matter to you, and help shape the future of our platform.
           </p>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-primary-600">
             {isAuthenticated ? 
               'You can upvote items and join discussions!' : 
               'Sign in to upvote features and participate in discussions.'
@@ -389,7 +389,7 @@ const RoadmapList = () => {
 
         {/* Error Message */}
         {error && (
-          <div className="mb-6 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
+          <div className="mb-6 bg-danger-50 border border-danger-200 text-danger-700 px-4 py-3 rounded">
             {error}
           </div>
         )}
@@ -397,8 +397,8 @@ const RoadmapList = () => {
         {/* Results */}
         <div className="space-y-6">
           {roadmapItems.length === 0 ? (
-            <div className="text-center py-12 bg-white rounded-lg shadow">
-              <p className="text-gray-500 text-lg">No roadmap items found matching your criteria.</p>
+            <div className="text-center py-12 bg-white rounded-lg shadow-lg border border-primary-200">
+              <p className="text-primary-600 text-lg">No roadmap items found matching your criteria.</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import AuthNavbar from './AuthNavbar';
+import AuthFooter from './AuthFooter';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -89,29 +91,32 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Sign in to your account
-          </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
-            Or{' '}
-            <Link
-              to="/register"
-              className="font-medium text-primary-600 hover:text-primary-500"
-            >
-              create a new account
-            </Link>
-          </p>
-        </div>
+    <div className="min-h-screen flex flex-col bg-primary-50">
+      <AuthNavbar />
+      
+      <div className="flex-1 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-md w-full space-y-8">
+          <div>
+            <h2 className="mt-6 text-center text-3xl font-extrabold text-primary-900">
+              Sign in to your account
+            </h2>
+            <p className="mt-2 text-center text-sm text-primary-700">
+              Or{' '}
+              <Link
+                to="/register"
+                className="font-medium text-accent-600 hover:text-accent-500"
+              >
+                create a new account
+              </Link>
+            </p>
+          </div>
         
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           {errors.submit && (
-            <div className="bg-red-50 border border-red-300 text-red-800 px-4 py-3 rounded-md shadow-sm">
+            <div className="bg-danger-50 border border-danger-300 text-danger-800 px-4 py-3 rounded-md shadow-sm">
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
-                  <svg className="w-5 h-5 text-red-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-5 h-5 text-danger-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
                   </svg>
                   <span className="font-medium">{errors.submit}</span>
@@ -125,7 +130,7 @@ const Login = () => {
                     }
                     setErrors(prev => ({ ...prev, submit: '' }));
                   }}
-                  className="ml-4 text-red-400 hover:text-red-600 focus:outline-none"
+                  className="ml-4 text-danger-400 hover:text-danger-600 focus:outline-none"
                 >
                   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
@@ -137,7 +142,7 @@ const Login = () => {
           
           <div className="space-y-4">
             <div>
-              <label htmlFor="username" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="username" className="block text-sm font-medium text-primary-700">
                 Username
               </label>
               <input
@@ -147,19 +152,19 @@ const Login = () => {
                 autoComplete="username"
                 required
                 className={`mt-1 appearance-none relative block w-full px-3 py-2 border ${
-                  errors.username ? 'border-red-300' : 'border-gray-300'
-                } placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-primary-500 focus:border-primary-500 focus:z-10 sm:text-sm`}
+                  errors.username ? 'border-danger-300' : 'border-primary-300'
+                } placeholder-primary-500 text-primary-900 rounded-md focus:outline-none focus:ring-accent-500 focus:border-accent-500 focus:z-10 sm:text-sm`}
                 placeholder="Enter your username"
                 value={formData.username}
                 onChange={handleChange}
               />
               {errors.username && (
-                <p className="mt-1 text-sm text-red-600">{errors.username}</p>
+                <p className="mt-1 text-sm text-danger-600">{errors.username}</p>
               )}
             </div>
             
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="password" className="block text-sm font-medium text-primary-700">
                 Password
               </label>
               <input
@@ -169,14 +174,14 @@ const Login = () => {
                 autoComplete="current-password"
                 required
                 className={`mt-1 appearance-none relative block w-full px-3 py-2 border ${
-                  errors.password ? 'border-red-300' : 'border-gray-300'
-                } placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-primary-500 focus:border-primary-500 focus:z-10 sm:text-sm`}
+                  errors.password ? 'border-danger-300' : 'border-primary-300'
+                } placeholder-primary-500 text-primary-900 rounded-md focus:outline-none focus:ring-accent-500 focus:border-accent-500 focus:z-10 sm:text-sm`}
                 placeholder="Enter your password"
                 value={formData.password}
                 onChange={handleChange}
               />
               {errors.password && (
-                <p className="mt-1 text-sm text-red-600">{errors.password}</p>
+                <p className="mt-1 text-sm text-danger-600">{errors.password}</p>
               )}
             </div>
           </div>
@@ -185,13 +190,16 @@ const Login = () => {
             <button
               type="submit"
               disabled={loading}
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-accent-600 hover:bg-accent-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent-500 disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
             >
               {loading ? 'Signing in...' : 'Sign in'}
             </button>
           </div>
         </form>
+        </div>
       </div>
+      
+      <AuthFooter />
     </div>
   );
 };

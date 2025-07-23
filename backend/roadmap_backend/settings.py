@@ -34,12 +34,11 @@ if not SECRET_KEY:
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    'your-backend-name.onrender.com',  # Replace with your actual Render app name
+    'roadmap-backend-egd9.onrender.com',  # Your Render backend URL
     '*.onrender.com',  # Allow any Render subdomain
+    'roadmap-6cw1.vercel.app',  # Your Vercel frontend domain
+    '*.vercel.app',  # Allow any Vercel subdomain
 ]
-
-# After you get your Vercel URL, add it here:
-# 'your-frontend-name.vercel.app',
 
 
 # Application definition
@@ -166,7 +165,7 @@ REST_FRAMEWORK = {
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",  # React development server
     "http://127.0.0.1:3000",
-    # "https://your-frontend-name.vercel.app",  # Add your actual Vercel URL here after deployment
+    "https://roadmap-6cw1.vercel.app",  # Your actual Vercel URL (without /roadmap path)
 ]
 
 # Add production frontend URLs when deployed
@@ -193,7 +192,7 @@ CORS_ALLOW_HEADERS = [
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
-    # "https://your-frontend-name.vercel.app",  # Add your actual Vercel URL here after deployment
+    "https://roadmap-6cw1.vercel.app",  # Your actual Vercel URL (without /roadmap path)
 ]
 
 if FRONTEND_URL:

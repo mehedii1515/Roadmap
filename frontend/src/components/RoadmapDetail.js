@@ -31,9 +31,9 @@ const Comment = ({ comment, roadmapId, onCommentUpdate, level = 0 }) => {
   // Use safe Tailwind classes for indentation
   const getIndentClass = (level) => {
     if (level === 0) return '';
-    if (level === 1) return 'ml-8 border-l-2 border-gray-200 pl-4';
-    if (level === 2) return 'ml-16 border-l-2 border-gray-200 pl-4';
-    return 'ml-24 border-l-2 border-gray-200 pl-4'; // fallback
+    if (level === 1) return 'ml-8 border-l-2 border-primary-200 pl-4';
+    if (level === 2) return 'ml-16 border-l-2 border-primary-200 pl-4';
+    return 'ml-24 border-l-2 border-primary-200 pl-4'; // fallback
   };
   
   const indentClass = getIndentClass(level);
@@ -90,15 +90,15 @@ const Comment = ({ comment, roadmapId, onCommentUpdate, level = 0 }) => {
   };
 
   return (
-    <div className={`${indentClass} ${level > 0 ? 'mt-4' : 'border-b border-gray-100 pb-4 mb-4'}`}>
-      <div className="bg-gray-50 rounded-lg p-4">
+    <div className={`${indentClass} ${level > 0 ? 'mt-4' : 'border-b border-primary-100 pb-4 mb-4'}`}>
+      <div className="bg-primary-50 rounded-lg p-4">
         <div className="flex items-start justify-between mb-2">
           <div>
-            <span className="font-semibold text-gray-900">
+            <span className="font-semibold text-primary-900">
               {comment.user.username}
-              {canEdit && <span className="ml-2 text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">You</span>}
+              {canEdit && <span className="ml-2 text-xs bg-accent-100 text-accent-800 px-2 py-1 rounded">You</span>}
             </span>
-            <span className="text-gray-500 text-sm ml-2">
+            <span className="text-primary-600 text-sm ml-2">
               {new Date(comment.created_at).toLocaleDateString()}
               {isCommentEdited(comment) && ' (edited)'}
             </span>
@@ -107,14 +107,14 @@ const Comment = ({ comment, roadmapId, onCommentUpdate, level = 0 }) => {
             <div className="flex space-x-2">
               <button
                 onClick={() => setIsEditing(true)}
-                className="text-blue-600 hover:text-blue-800 text-sm"
+                className="text-accent-600 hover:text-accent-800 text-sm"
                 disabled={loading}
               >
                 Edit
               </button>
               <button
                 onClick={handleDelete}
-                className="text-red-600 hover:text-red-800 text-sm"
+                className="text-danger-600 hover:text-danger-800 text-sm"
                 disabled={loading}
               >
                 Delete
