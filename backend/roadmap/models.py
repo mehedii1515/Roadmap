@@ -24,12 +24,11 @@ class RoadmapItem(models.Model):
     description = models.TextField()
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='planning')
     category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, default='feature')
-    priority = models.IntegerField(default=0)  # Higher number = higher priority
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
     class Meta:
-        ordering = ['-priority', '-created_at']
+        ordering = ['-created_at']
     
     def __str__(self):
         return self.title

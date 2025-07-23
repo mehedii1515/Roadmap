@@ -4,11 +4,11 @@ from .models import RoadmapItem, Upvote, Comment
 
 @admin.register(RoadmapItem)
 class RoadmapItemAdmin(admin.ModelAdmin):
-    list_display = ['title', 'status', 'category', 'priority', 'upvote_count', 'created_at']
+    list_display = ['title', 'status', 'category', 'upvote_count', 'created_at']
     list_filter = ['status', 'category', 'created_at']
     search_fields = ['title', 'description']
-    list_editable = ['status', 'priority']
-    ordering = ['-priority', '-created_at']
+    list_editable = ['status']
+    ordering = ['-created_at']
     
     def upvote_count(self, obj):
         return obj.upvote_count

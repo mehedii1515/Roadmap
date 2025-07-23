@@ -12,71 +12,61 @@ class Command(BaseCommand):
                 'title': 'User Authentication System',
                 'description': 'Implement a secure user authentication system with login, registration, and password reset functionality.',
                 'status': 'completed',
-                'category': 'feature',
-                'priority': 10
+                'category': 'feature'
             },
             {
                 'title': 'Dark Mode Support',
                 'description': 'Add dark mode theme option for better user experience during night time usage.',
                 'status': 'in_progress',
-                'category': 'improvement',
-                'priority': 8
+                'category': 'improvement'
             },
             {
                 'title': 'Mobile Responsive Design',
                 'description': 'Optimize the application for mobile devices and tablets with responsive design patterns.',
                 'status': 'planning',
-                'category': 'improvement',
-                'priority': 9
+                'category': 'improvement'
             },
             {
                 'title': 'Real-time Notifications',
                 'description': 'Implement real-time push notifications for user activities and system updates.',
                 'status': 'planning',
-                'category': 'feature',
-                'priority': 7
+                'category': 'feature'
             },
             {
                 'title': 'Advanced Search Functionality',
                 'description': 'Add advanced search filters and sorting options for better content discovery.',
                 'status': 'in_progress',
-                'category': 'feature',
-                'priority': 6
+                'category': 'feature'
             },
             {
                 'title': 'Performance Optimization',
                 'description': 'Optimize database queries and frontend rendering for improved application performance.',
                 'status': 'planning',
-                'category': 'maintenance',
-                'priority': 5
+                'category': 'maintenance'
             },
             {
                 'title': 'API Rate Limiting',
                 'description': 'Implement rate limiting for API endpoints to prevent abuse and ensure fair usage.',
                 'status': 'planning',
-                'category': 'maintenance',
-                'priority': 4
+                'category': 'maintenance'
             },
             {
                 'title': 'Social Media Integration',
                 'description': 'Allow users to share content on social media platforms and login with social accounts.',
                 'status': 'planning',
-                'category': 'feature',
-                'priority': 3
+                'category': 'feature'
             },
             {
                 'title': 'Bug Fix: Login Page Styling',
                 'description': 'Fix styling issues on the login page that appear on certain screen resolutions.',
                 'status': 'completed',
-                'category': 'bug_fix',
-                'priority': 2
+                'category': 'bug_fix'
             },
             {
                 'title': 'User Analytics Dashboard',
                 'description': 'Research and design analytics dashboard for tracking user engagement and behavior.',
                 'status': 'planning',
-                'category': 'research',
-                'priority': 1
+                'category': 'research'
             }
         ]
 

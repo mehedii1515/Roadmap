@@ -71,7 +71,7 @@ class RoadmapItemSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = RoadmapItem
-        fields = ['id', 'title', 'description', 'status', 'category', 'priority', 
+        fields = ['id', 'title', 'description', 'status', 'category', 
                  'created_at', 'updated_at', 'upvote_count', 'user_upvoted', 'comments_count']
     
     def get_user_upvoted(self, obj):

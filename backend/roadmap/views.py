@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django_filters.rest_framework import DjangoFilterBackend
 from django.db import models
+from django.db.models import Count
 from django.views.decorators.csrf import csrf_exempt
 from .models import RoadmapItem, Upvote, Comment
 from .serializers import (
@@ -76,13 +77,15 @@ def logout(request):
 # Roadmap Views
 class RoadmapItemListView(generics.ListAPIView):
     """List all roadmap items with filtering and sorting"""
-    queryset = RoadmapItem.objects.all()
+    queryset = RoadmapItem.objects.all().annotate(
+        upvote_count_annotated=models.Count('upvotes')
+    )
     serializer_class = RoadmapItemSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     filter_backends = [DjangoFilterBackend, filters.OrderingFilter, filters.SearchFilter]
     filterset_fields = ['status', 'category']
-    ordering_fields = ['created_at', 'priority', 'upvote_count']
-    ordering = ['-priority', '-created_at']
+    ordering_fields = ['created_at', 'upvote_count_annotated']
+    ordering = ['-created_at']
     search_fields = ['title', 'description']
     
     def get_queryset(self):
@@ -91,9 +94,7 @@ class RoadmapItemListView(generics.ListAPIView):
         # Custom filtering for popularity (upvote count)
         sort_by = self.request.query_params.get('sort_by')
         if sort_by == 'popularity':
-            queryset = queryset.annotate(
-                upvote_count_annotated=models.Count('upvotes')
-            ).order_by('-upvote_count_annotated')
+            queryset = queryset.order_by('-upvote_count_annotated', '-created_at')
         
         return queryset
 
