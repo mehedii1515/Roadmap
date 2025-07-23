@@ -1,12 +1,20 @@
 import axios from 'axios';
 
 // Use environment variable for API URL in production, localhost in development
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000/api';
+// Force production URL if in production environment
+const isProduction = process.env.NODE_ENV === 'production';
+const productionApiUrl = 'https://roadmap-backend-egd9.onrender.com/api';
+const developmentApiUrl = 'http://localhost:8000/api';
+
+const API_BASE_URL = isProduction 
+  ? (process.env.REACT_APP_API_URL || productionApiUrl)
+  : (process.env.REACT_APP_API_URL || developmentApiUrl);
 
 // Debug: Log the API URL being used (remove in production)
 console.log('API_BASE_URL:', API_BASE_URL);
 console.log('Environment:', process.env.NODE_ENV);
 console.log('REACT_APP_API_URL:', process.env.REACT_APP_API_URL);
+console.log('isProduction:', isProduction);
 
 // Create axios instance with default config
 const api = axios.create({
